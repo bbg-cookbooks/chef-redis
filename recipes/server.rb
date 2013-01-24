@@ -11,6 +11,7 @@ redis_instance "server" do
   node.redis.config.each do |attribute, value|
     send(attribute, value)
   end
+end
 
   #TODO
 if node.redis.replication.enabled
