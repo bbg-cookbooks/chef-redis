@@ -14,8 +14,8 @@ def load_current_resource
   new_resource.databases
   new_resource.dir
   new_resource.conf_dir
-  new_resource.listen_addr
-  new_resource.listen_port
+  new_resource.bind
+  new_resource.port
   new_resource.loglevel
   new_resource.rdbcompression
   new_resource.timeout
@@ -89,7 +89,9 @@ def create_config
     owner "root"
     group "root"
     mode 0644
-    variables new_resource.to_hash
+    config = new_resource.to_hash
+    config = config.delete_if { |k,v| ["resource-name"].include?(k) }
+    variables :config => config
     notifies :restart, "service[#{redis_service_name}]", :immediate
   end
 end
