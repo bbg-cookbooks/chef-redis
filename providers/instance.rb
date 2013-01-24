@@ -7,44 +7,46 @@ def load_current_resource
   new_resource.dbfilename   new_resource.dbfilename || "#{new_resource.name}.rdb"
   new_resource.user         new_resource.user  || node.redis.user
   new_resource.group        new_resource.group || node.redis.group
-
-  new_resource.appendonly
-  new_resource.appendfsync
-  new_resource.daemonize
-  new_resource.databases
-  new_resource.dir
-  new_resource.conf_dir
-  new_resource.bind
-  new_resource.port
-  new_resource.loglevel
-  new_resource.rdbcompression
-  new_resource.timeout
-  new_resource.save
-  new_resource.activerehashing
-
-  new_resource.vm_enabled
-  new_resource.vm_max_memory
-  new_resource.vm_max_threads
-  new_resource.vm_page_size
-  new_resource.vm_pages
-
-  new_resource.configure_slowlog
-  new_resource.slowlog_log_slower_than
-  new_resource.slowlog_max_len
-  new_resource.configure_maxmemory_samples
-  new_resource.maxmemory_samples
-
-  new_resource.configure_no_appendfsync_on_rewrite
-  new_resource.no_appendfsync_on_rewrite
-
-  new_resource.configure_list_max_ziplist
-  new_resource.list_max_ziplist_entries
-  new_resource.list_max_ziplist_value
-
-  new_resource.configure_set_max_intset_entries
-  new_resource.set_max_intset_entries
-
   new_resource.init_style
+  new_resource.configure_no_appendfsync_on_rewrite
+  new_resource.configure_slowlog
+  new_resource.configure_list_max_ziplist
+  new_resource.configure_maxmemory_samples
+  new_resource.configure_set_max_intset_entries
+  new_resource.conf_dir
+
+
+  new_resource.state
+
+#  new_resource.appendonly
+#  new_resource.appendfsync
+#  new_resource.daemonize
+#  new_resource.dir
+#  new_resource.databases
+#  new_resource.bind
+#  new_resource.port
+#  new_resource.loglevel
+#  new_resource.rdbcompression
+#  new_resource.timeout
+#  new_resource.save
+#  new_resource.activerehashing
+
+#  new_resource.vm_max_memory
+#  new_resource.vm_max_threads
+#  new_resource.vm_page_size
+#  new_resource.vm_pages
+
+#  new_resource.slowlog_log_slower_than
+#  new_resource.slowlog_max_len
+#  new_resource.maxmemory_samples
+
+#  new_resource.no_appendfsync_on_rewrite
+
+#  new_resource.list_max_ziplist_entries
+#  new_resource.list_max_ziplist_value
+
+#  new_resource.set_max_intset_entries
+
 end
 
 action :create do
@@ -89,9 +91,7 @@ def create_config
     owner "root"
     group "root"
     mode 0644
-    config = new_resource.to_hash
-    config = config.delete_if { |k,v| ["resource-name"].include?(k) }
-    variables :config => config
+    variables :config => new_resource.state
     notifies :restart, "service[#{redis_service_name}]", :immediate
   end
 end

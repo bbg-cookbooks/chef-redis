@@ -57,3 +57,39 @@ def initialize(*args)
     super
     @action = :create
 end
+state_attrs(
+ :appendonly,
+ :appendfsync,
+ :daemonize,
+ :databases,
+ :dbfilename,
+ :dir,
+ :bind,
+ :port,
+ :logfile,
+ :loglevel,
+ :pidfile,
+ :rdbcompression,
+ :timeout,
+ :save,
+ :activerehashing,
+
+ :vm_enabled,
+ :vm_max_memory,
+ :vm_max_threads,
+ :vm_page_size,
+ :vm_pages,
+ :vm_swap_file,
+
+ :slowlog_log_slower_than,
+ :slowlog_max_len,
+
+ :maxmemory_samples,
+
+ :no_appendfsync_on_rewrite,
+
+ :list_max_ziplist_entries,
+ :list_max_ziplist_value,
+
+ :set_max_intset_entries
+)
