@@ -48,12 +48,6 @@ default['redis']['config']['rdbcompression'] = "yes"
 default['redis']['config']['timeout'] = "300"
 default['redis']['config']['slave']['master_addr'] = nil
 default['redis']['config']['slave']['master_port'] = "6379"
-default['redis']['config']['vm']['enabled'] = "no"
-default['redis']['config']['vm']['max_memory'] = "0"
-default['redis']['config']['vm']['max_threads'] = "4"
-default['redis']['config']['vm']['page_size'] = "32"
-default['redis']['config']['vm']['pages'] = "134217728"
-default['redis']['config']['vm']['vm_swap_file'] = "/var/lib/redis/redis.swap"
 
 ###
 ## the following configuration settings may only work with a recent redis release
