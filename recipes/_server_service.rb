@@ -6,7 +6,7 @@ redis_service = case node['platform_family']
 when "debian"
   "redis-server"
 when "rhel", "fedora"
-  "redis"
+  "redis-server"
 else
   "redis"
 end
