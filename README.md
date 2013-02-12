@@ -3,7 +3,7 @@
 Installs and configures [Redis](http://redis.io/).
 
 ** NOTE **
-This cookbook does not currently configure or manage Redis replication.
+This cookbook only configures simple redis replication. If you need security, use stunnel.
 
 # REQUIREMENTS:
 
@@ -44,12 +44,6 @@ The config file template should support all current configuration options. If we
 * `['redis']['config']['pidfile']` - When daemonize is enabled this configures where Redis will write the pid file.
 * `['redis']['config']['rdbcompression']` - Whether or not to use LZF compression when dumping .rdb databases. [ yes, no ]
 * `['redis']['config']['timeout']` - Configures when Redis will timeout a idle client connection.
-* `['redis']['config']['vm']['enabled']`- Use Redis' virtual memory.
-* `['redis']['config']['vm']['max_memory']` - Limits the amount of memory available to Redis.
-* `['redis']['config']['vm']['max_threads']` - Maximum number of VM I/O threads running simultaneously.
-* `['redis']['config']['vm']['page_size']` - Configures the page size Redis uses when writing out swap files.
-* `['redis']['config']['vm']['pages']` - The total number of memory pages in a swap file.
-* `['redis']['config']['vm']['vm_swap_file']` - The Redis swapfile.
 
 ** The following configuration settings are only available in redis >= 2.1.12 -- http://redis.io/commands/slowlog **
 
